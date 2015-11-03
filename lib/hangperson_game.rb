@@ -15,6 +15,11 @@ attr_accessor :word, :guesses, :wrong_guesses
   end
 
   def guess(guess)
+  
+    raise(ArgumentError) if guess == ''
+    raise(ArgumentError) if guess == nil
+    raise(ArgumentError) if guess !~ /[a-zA-Z]/
+  
     if guess.downcase == @guesses || guess.downcase == @wrong_guesses
       return false
     end
