@@ -15,11 +15,12 @@ attr_accessor :word, :guesses, :wrong_guesses
   end
 
   def guess(guess)
-  if @word.include? guess 
+    if guess.downcase == @guesses || guess.downcase == @wrong_guesses
+      return false
+    end
+  if @word.include? guess
     @guesses = guess
-    @wrong_guesses = ''
 	else
-	  @guesses = ''
     @wrong_guesses = guess
   end
   end
