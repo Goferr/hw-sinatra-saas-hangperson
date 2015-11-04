@@ -1,5 +1,6 @@
 class HangpersonGame
 
+
   # add the necessary class methods, attributes, etc. here
   # to make the tests in spec/hangperson_game_spec.rb pass.
 attr_accessor :word, :guesses, :wrong_guesses
@@ -24,19 +25,30 @@ attr_accessor :word, :guesses, :wrong_guesses
       return false
     end
   if @word.include? guess
-    @guesses = guess
+    @guesses += guess
 	else
-    @wrong_guesses = guess
+    @wrong_guesses += guess
   end
   end
 
-  def check_win_or_lose
-  end
+def check_win_or_lose
+    if word_with_guesses == word
+      :win
+    elsif wrong_guesses.length > 6
+      :lose
+    else
+      :play
+    end
+end
 
-  def  word_with_guesses
-  end
-  
-  
+def word_with_guesses
+ word.gsub(/./) { |letter| guesses.include?(letter) ? letter : '-' }
+end
+
+
+
+
+
   def self.get_random_word
     require 'uri'
     require 'net/http'
